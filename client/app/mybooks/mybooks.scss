@@ -1,0 +1,36 @@
+.results {
+    float: right;
+    display: flex;
+}
+ .myBooks{
+ 	display:flex;
+ }
+.results div{
+	position:relative;
+}
+.results span{
+	position: absolute;
+    color: green;
+    font-size: 2em;
+    right: -8px;
+    cursor: pointer;
+    background-color: white;
+    padding: 4px;
+    border-radius: 21px;
+    top: 150px;
+}
+.results span:hover{
+    background-color: #E9FFE0;
+}
+
+.results ul, .myBooks ul {
+    list-style: none;
+}
+
+.results ul li, .myBooks ul li  {
+    float:left;
+    padding: 5px;
+    width: 130px;
+    height: 200px;
+    margin: 10px;
+}
