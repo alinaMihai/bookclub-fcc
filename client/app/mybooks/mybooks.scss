@@ -5,10 +5,10 @@
  .myBooks{
  	display:flex;
  }
-.results div{
+.results div, .myBooks div{
 	position:relative;
 }
-.results span{
+.results span, .myBooks span{
 	position: absolute;
     color: green;
     font-size: 2em;
@@ -18,6 +18,13 @@
     padding: 4px;
     border-radius: 21px;
     top: 150px;
+}
+.myBooks span{
+    color:black;
+     font-size: 1.5em;
+}
+.myBooks span:hover{
+    background-color:pink;
 }
 .results span:hover{
     background-color: #E9FFE0;

@@ -1,10 +1,10 @@
 /**
  * Endpoints.
  * GET     /books/search/:query              ->  searchBook
+ * GET     /books/:id                        ->  show
+ * GET     /books/all                        ->  index
  * POST    /books              				 ->  addBook
- * GET     /things/:id          ->  show
- * PUT     /things/:id          ->  update
- * DELETE  /things/:id          ->  destroy
+ * DELETE  /books/:id                        ->  destroy
  */
 
 'use strict';
@@ -17,7 +17,6 @@ var books = require('google-books-search');
 
 exports.searchBook = function(req, res) {
     var options = {
-
         type: 'books',
         order: 'relevance',
         limit: 12,
@@ -47,6 +46,46 @@ exports.getMyBooks = function(req, res) {
     var query = Book.find({});
     query.where('user', req.user.email);
     query.exec(function(err, books) {
+        if (err) {
+            return handleError(res, err);
+        }
+        return res.status(200).json(books);
+    });
+};
+// Get a single book
+exports.show = function(req, res) {
+    Book.findById(req.params.id, function(err, book) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!book) {
+            return res.status(404).send('Not Found');
+        }
+        return res.json(book);
+    });
+};
+
+// Deletes a book from the DB.
+exports.destroy = function(req, res) {
+    Book.findById(req.params.id, function(err, book) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!book) {
+            return res.status(404).send('Not Found');
+        }
+        book.remove(function(err) {
+            if (err) {
+                return handleError(res, err);
+            }
+            return res.status(204).send('No Content');
+        });
+    });
+};
+
+// Get list of all books
+exports.index = function(req, res) {
+    Book.find({}).exec(function(err, books) {
         if (err) {
             return handleError(res, err);
         }

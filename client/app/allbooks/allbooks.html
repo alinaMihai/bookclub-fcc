@@ -1,0 +1,12 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+	<div class="row">
+		<h1>All books</h1>
+	</div>
+	<div class="row allBooks">
+		<ul>
+			<li ng-repeat="book in vm.allBooks track by $index">
+				<div><a ui-sref="BookDetail({id:book._id})"><img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}"></a></div></li>
+		</ul>
+	</div>
+</div>

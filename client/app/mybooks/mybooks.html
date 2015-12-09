@@ -22,7 +22,7 @@
 		<h4>Shelf</h4>
 		<ul>
 			<li ng-repeat="book in vm.myBooks track by $index">
-				<div><img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}"></div></li>
+				<div><span class="glyphicon glyphicon-remove" aria-hidden="true" title="delete book" ng-click="vm.deleteBook(book)"></span><a ui-sref="BookDetail({id:book._id})"><img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}"></a></div></li>
 		</ul>
 	</div>
 </div>

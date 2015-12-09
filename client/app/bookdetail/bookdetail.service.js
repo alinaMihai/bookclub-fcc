@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('bookclupApp')
+        .module('bookclubApp')
         .service('BookDetailService', BookDetailService);
 
     BookDetailService.$inject = ['$http', '$q'];

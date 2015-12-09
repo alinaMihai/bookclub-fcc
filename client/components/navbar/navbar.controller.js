@@ -10,6 +10,14 @@ angular.module('bookclubApp')
             'title': 'My Books',
             'link': '/myBooks',
             'state': 'myBooks'
+        }, {
+            'title': 'All Books',
+            'link': '/allbooks',
+            'state': 'AllBooks'
+        }, {
+            'title': 'Trading',
+            'link': '/books/trading',
+            'state': 'Trading'
         }];
 
         $scope.isCollapsed = true;

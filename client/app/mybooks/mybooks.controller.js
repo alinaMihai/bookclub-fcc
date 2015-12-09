@@ -15,6 +15,7 @@
         vm.results = [];
         vm.myBooks = [];
         vm.addBook = addBook;
+        vm.deleteBook = deleteBook;
         activate();
 
         ////////////////
@@ -35,6 +36,15 @@
             myBooksService.addBook(book).then(function(book) {
                 vm.myBooks.push(book);
                 vm.results = [];
+            });
+        }
+
+        function deleteBook(book) {
+            myBooksService.deleteBook(book._id).then(function() {
+                var index = _.findIndex(vm.myBooks, {
+                    _id: book._id
+                });
+                vm.myBooks.splice(index, 1);
             });
         }
     }

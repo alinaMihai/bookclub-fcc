@@ -12,6 +12,7 @@
         this.searchBook = searchBook;
         this.addBook = addBook;
         this.getMyBooks = getMyBooks;
+        this.deleteBook = deleteBook;
 
         function searchBook(query) {
             var deferred = $q.defer();
@@ -42,6 +43,18 @@
             $http.get('/api/books')
                 .success(function(books) {
                     deferred.resolve(books);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+        }
+
+        function deleteBook(id) {
+            var deferred = $q.defer();
+            $http.delete('/api/books/' + id)
+                .success(function(response) {
+                    deferred.resolve();
                 })
                 .error(function(err) {
                     deferred.reject(err);
