@@ -1,6 +1,11 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
-	<div class="row"><h1>Book Details</h1></div>
+	<div class="row"><h1>Book Details</h1>
+       
+       <button class="btn btn-success" ng-if="vm.canMakeRequest" ng-click="vm.requestBook()" ng-disabled="vm.requestMade">{{vm.requestActionText}}</button>
+
+	</div>
+
 	<div class="row">
 		<p>{{vm.book.title}}</p>
 		<p>{{vm.book.link}}</p>

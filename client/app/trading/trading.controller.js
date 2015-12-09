@@ -10,12 +10,17 @@
     /* @ngInject */
     function TradingController(TradingService) {
         var vm = this;
-        vm.title = 'Controller';
+        vm.userBookRequests = {};
 
         activate();
 
         ////////////////
 
-        function activate() {}
+        function activate() {
+            TradingService.getBookRequests().then(function(userBookRequests) {
+                vm.userBookRequests = userBookRequests;
+                console.log(userBookRequests);
+            });
+        }
     }
 })();

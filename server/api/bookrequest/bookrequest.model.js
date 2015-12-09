@@ -6,14 +6,7 @@ var ObjectIdSchema = Schema.ObjectId;
 var ObjectId = mongoose.Types.ObjectId;
 
 var BookRequestSchema = new Schema({
-    user: {
-        type: ObjectIdSchema,
-        ref: 'User'
-    },
-    owner: {
-        type: ObjectIdSchema,
-        ref: 'User'
-    },
+    user: String,
     book: {
         type: ObjectIdSchema,
         ref: 'Book'
