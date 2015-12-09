@@ -2,19 +2,50 @@
 
 <div class="container">
 	<div class="row"><h1>Trading</h1></div>
-	<uib-tabset>
-		<uib-tab >
-		    <uib-tab-heading>
-			<i class="badge">{{vm.userRequests.incoming}}</i> Incoming Requests
-			</uib-tab-heading>
-			<table></table>
-		</uib-tab>
-		<uib-tab >
-		    <uib-tab-heading>
-			<i class="badge">{{vm.userRequests.outgoing}}</i> Outgoing Requests
-			</uib-tab-heading>
-			<table></table>
-		</uib-tab>
 
-	</uib-tabset>
+	<tabset>
+		<tab >
+		    <tab-heading>
+			<i class="badge">{{vm.userBookRequests.incomingRequests.length}}</i> Incoming Requests
+			</tab-heading>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>From</th>
+						<th>Requested Book</th>
+						<th>On</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="request in vm.userBookRequests.incomingRequests">
+						<td>{{request.user}}</td>
+						<td>{{request.book.title}}</td>
+						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</tab>
+		<tab >
+		    <tab-heading>
+			<i class="badge">{{vm.userBookRequests.outgoingRequests.length}}</i> Outgoing Requests
+			</tab-heading>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Owner</th>
+						<th>Requested Book</th>
+						<th>On</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="request in vm.userBookRequests.outgoingRequests">
+						<td>{{request.book.user}}</td>
+						<td>{{request.book.title}}</td>
+						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</tab>
+
+	</tabset>
 </div>

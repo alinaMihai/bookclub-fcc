@@ -11,7 +11,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Promise = require('promise');
+var q = require('q');
 var BookRequest = require('./bookrequest.model');
 
 // Get my requests
@@ -44,50 +44,49 @@ exports.getExistingRequest = function(req, res) {
         return res.status(200).send(bookRequest);
     });
 }
-exports.getBookRequests = function(req, res) {
+/*exports.getBookRequests = function(req, res) {
     var user = req.user.email;
     var userRequests = {};
     var incomingPromise = getIncomingRequests(user);
     var outgoingPromise = getOutgoingRequests(user);
 
-    Promise.all(incomingPromise, outgoingPromise).then(function(res) {
+    q.all(incomingPromise, outgoingPromise).then(function(res) {
         userRequests.incomingRequests = res[0];
         userRequests.outgoingRequests = res[1];
+        return res.status(200).json(userRequests);
+    });
+}*/
 
-        return res.status(200).send(userRequests);
+
+exports.getIncomingRequests = function(req, res) {
+    var user = req.user.email;
+    var query = BookRequest.find({});
+    query.populate('book');
+    query.exec(function(err, bookRequests) {
+        if (err) {
+            console.log(err);
+            return handleError(res, err);
+        }
+        var incoming = bookRequests.filter(function(bookRequest) {
+            return bookRequest.book.user === user;
+        });
+        return res.status(200).send(incoming);
     });
 }
 
+exports.getOutgoingRequests = function(req, res) {
+    var user = req.user.email;
+    var query = BookRequest.find({});
+    query.where('user', user);
+    query.populate('book');
+    query.exec(function(err, bookRequests) {
+        if (err) {
+            return handleError(res, err);
+        }
+        return res.status(200).send(bookRequests);
 
-function getIncomingRequests(user) {
-    var promise = new Promise(function(resolve, reject) {
-        var query = BookRequest.find({});
-        query.populate('book');
-        query.exec(function(err, bookRequests) {
-            if (err) {
-                reject(0);
-            }
-            var incoming = bookRequests.filter(function(bookRequest) {
-                return bookRequest.book.user === user;
-            });
-            resolve(incoming);
-        });
     });
-    return promise;
-}
 
-function getOutgoingRequests(user) {
-    var promise = new Promise(function(resolve, reject) {
-        var query = BookRequest.find({});
-        query.where('user', user);
-        query.exec(function(err, bookRequests) {
-            if (err) {
-                reject(0);
-            }
-            resolve(bookRequests);
-        });
-    });
-    return promise;
 }
 
 function handleError(res, err) {

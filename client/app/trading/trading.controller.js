@@ -10,7 +10,7 @@
     /* @ngInject */
     function TradingController(TradingService) {
         var vm = this;
-        vm.userBookRequests = {};
+        vm.userBookRequests;
 
         activate();
 

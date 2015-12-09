@@ -15,14 +15,24 @@
 
         function getBookRequests() {
             var deferred = $q.defer();
-            $http.get('/api/bookrequest')
-                .success(function(userBookRequests) {
-                    deferred.resolve(userBookRequests);
-                })
-                .error(function(err) {
-                    deferred.reject(err);
-                });
+            var incomingPromise = getIncomingRequests();
+            var outgoingPromise = getOutgoingRequests();
+
+            $q.all([incomingPromise, outgoingPromise]).then(function(response) {
+                var userBookRequests = {};
+                userBookRequests.incomingRequests = response[0].data;
+                userBookRequests.outgoingRequests = response[1].data;
+                deferred.resolve(userBookRequests);
+            })
             return deferred.promise;
+        }
+
+        function getIncomingRequests() {
+            return $http.get('/api/bookrequests/incoming');
+        }
+
+        function getOutgoingRequests() {
+            return $http.get('/api/bookrequests/outgoing');
         }
     }
 })();
