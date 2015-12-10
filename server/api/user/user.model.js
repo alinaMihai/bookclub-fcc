@@ -6,6 +6,8 @@ var crypto = require('crypto');
 
 var UserSchema = new Schema({
     name: String,
+    firstName: String,
+    lastName: String,
     email: {
         type: String,
         lowercase: true
@@ -40,7 +42,8 @@ UserSchema
     .virtual('profile')
     .get(function() {
         return {
-            'name': this.name,
+            'firstName': this.name.split(' ')[0] || this.firstName,
+            'lastName': this.name.split(' ')[1] || this.lastName,
             'role': this.role
         };
     });
