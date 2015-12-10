@@ -9,7 +9,7 @@ router.get('/search/:query', controller.searchBook);
 router.get('/', auth.isAuthenticated(), controller.getMyBooks);
 router.get('/all', auth.isAuthenticated(), controller.index);
 router.get('/:id', controller.show);
-router.post('/', auth.isAuthenticated(), controller.addBook);
+router.post('/', auth.isAuthenticated(), controller.addBooks);
 router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
 module.exports = router;

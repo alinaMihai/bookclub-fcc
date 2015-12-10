@@ -23,9 +23,9 @@
             });
         }
 
-        function addBook(book) {
-            myBooksService.addBook(book).then(function(book) {
-                vm.myBooks.push(book);
+        function addBooks(books) {
+            myBooksService.addBooks(books).then(function(books) {
+                vm.myBooks = vm.myBooks.concat(books);
             });
         }
 
@@ -47,9 +47,7 @@
             });
 
             modalInstance.result.then(function(data) {
-                data.forEach(function(book) {
-                    addBook(book);
-                });
+                addBooks(data);
             }, function() {
                 // $log.info('Modal dismissed at: ' + new Date());
             });

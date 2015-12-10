@@ -3,7 +3,7 @@
  * GET     /books/search/:query              ->  searchBook
  * GET     /books/:id                        ->  show
  * GET     /books/all                        ->  index
- * POST    /books              				 ->  addBook
+ * POST    /books              				 ->  addBooks
  * DELETE  /books/:id                        ->  destroy
  */
 
@@ -31,14 +31,16 @@ exports.searchBook = function(req, res) {
     });
 }
 
-exports.addBook = function(req, res) {
+exports.addBooks = function(req, res) {
     var user = req.user.email;
-    req.body.user = user;
-    Book.create(req.body, function(err, book) {
+    req.body.books.forEach(function(book) {
+        book.user = user;
+    });
+    Book.collection.insert(req.body.books, function(err, books) {
         if (err) {
             return handleError(res, err);
         }
-        return res.status(201).json(book);
+        return res.status(201).json(books.ops);
     });
 }
 // Get list of books

@@ -10,7 +10,7 @@
     /* @ngInject */
     function myBooksService($http, $q, apiKey) {
         this.searchBook = searchBook;
-        this.addBook = addBook;
+        this.addBooks = addBooks;
         this.getMyBooks = getMyBooks;
         this.deleteBook = deleteBook;
 
@@ -26,11 +26,13 @@
             return deferred.promise;
         }
 
-        function addBook(book) {
+        function addBooks(books) {
             var deferred = $q.defer();
-            $http.post('/api/books', book)
-                .success(function(book) {
-                    deferred.resolve(book);
+            $http.post('/api/books', {
+                'books': books
+            })
+                .success(function(books) {
+                    deferred.resolve(books);
                 })
                 .error(function(err) {
                     deferred.reject(err);
