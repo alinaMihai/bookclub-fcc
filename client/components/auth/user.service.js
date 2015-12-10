@@ -19,6 +19,12 @@ angular.module('bookclubApp')
             },
             'update': {
                 method: 'PUT'
+            },
+            'getUserProfile': {
+                method: 'GET',
+                params: {
+                    id: 'email'
+                }
             }
         });
     });

@@ -66,13 +66,15 @@ exports.update = function(req, res) {
 /**
  * Get a single user
  */
-exports.show = function(req, res, next) {
-    var userId = req.params.id;
+exports.getUserProfile = function(req, res, next) {
 
-    User.findById(userId, function(err, user) {
+    var userEmail = req.query.email;
+
+    var query = User.findOne({});
+    query.where('email', userEmail);
+    query.exec(function(err, user) {
         if (err) return next(err);
         if (!user) return res.status(401).send('Unauthorized');
-        console.log(user.profile);
         res.json(user.profile);
     });
 };

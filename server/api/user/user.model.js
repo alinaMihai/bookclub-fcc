@@ -44,6 +44,8 @@ UserSchema
         return {
             'firstName': this.name.split(' ')[0] || this.firstName,
             'lastName': this.name.split(' ')[1] || this.lastName,
+            'city': this.city,
+            'state': this.state,
             'role': this.role
         };
     });

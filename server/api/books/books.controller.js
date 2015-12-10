@@ -3,6 +3,7 @@
  * GET     /books/search/:query              ->  searchBook
  * GET     /books/:id                        ->  show
  * GET     /books/all                        ->  index
+ * GET     /books/:userEmail                 ->  getUserBooks
  * POST    /books              				 ->  addBooks
  * DELETE  /books/:id                        ->  destroy
  */
@@ -54,6 +55,18 @@ exports.getMyBooks = function(req, res) {
         return res.status(200).json(books);
     });
 };
+
+exports.getUserBooks = function(req, res) {
+    var query = Book.find({});
+    query.where('user', req.params.userEmail);
+    query.exec(function(err, books) {
+        if (err) {
+            return handleError(res, err);
+        }
+        return res.status(200).json(books);
+    })
+}
+
 // Get a single book
 exports.show = function(req, res) {
     Book.findById(req.params.id, function(err, book) {

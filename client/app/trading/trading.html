@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.incomingRequests">
-						<td>{{request.user}}</td>
+						<td><a ui-sref="UserProfile({email:request.user})">{{request.user}}</a></td>
 						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
 						<td>{{request.status|statusFilter}}</td>
@@ -50,7 +50,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.outgoingRequests">
-						<td>{{request.book.user}}</td>
+						<td><a ui-sref="UserProfile({email:request.book.user})">{{request.book.user}}</a></td>
 						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
 						<td>{{request.status|statusFilter}}</td>
@@ -71,7 +71,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.myRequests">
-						<td>{{request.book.user}}</td>
+						<td><a ui-sref="UserProfile({email:request.book.user})">{{request.book.user}}</a></td>
 						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
 						<td>{{request.status|statusFilter}}</td>
@@ -92,7 +92,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.othersRequests">
-						<td>{{request.user}}</td>
+						<td><a ui-sref="UserProfile({email:request.user})">{{request.user}}</a></td>
 						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
 						<td>{{request.status|statusFilter}}</td>

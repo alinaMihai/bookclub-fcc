@@ -30,10 +30,7 @@
                         vm.requestActionText = "Request made";
                     }
                 });
-
             });
-
-
         }
 
         function requestBook() {
