@@ -1,0 +1,22 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+	<div class="row"><h1>User Profile</h1>
+	</div>
+	<div class="row">
+		<p>Name: {{vm.user.firstName}} {{vm.user.lastName}}</p>
+		<p>Country/State: {{vm.user.state}}</p>
+		<p>City: {{vm.user.city}}</p>
+	</div>
+	<div class="row userBooks">
+		<h4>Shelf</h4>
+		<ul>
+			<li ng-repeat="book in vm.userBooks track by $index">
+				<div>
+					<a ui-sref="BookDetail({id:book._id})">
+						<img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}">
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

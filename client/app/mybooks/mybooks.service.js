@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .service('myBooksService', myBooksService);
 
-    myBooksService.$inject = ['$http', '$q'];
+    myBooksService.$inject = ['$http', '$q', 'toastr'];
 
     /* @ngInject */
-    function myBooksService($http, $q, apiKey) {
+    function myBooksService($http, $q, toastr) {
         this.searchBook = searchBook;
         this.addBooks = addBooks;
         this.getMyBooks = getMyBooks;
@@ -33,9 +33,11 @@
             })
                 .success(function(books) {
                     deferred.resolve(books);
+                    toastr.success('Books added to your shelf', 'Add Books Success');
                 })
                 .error(function(err) {
                     deferred.reject(err);
+                    toastr.error('Error: Could not add books successfully', err);
                 });
             return deferred.promise;
         }
@@ -48,6 +50,7 @@
                 })
                 .error(function(err) {
                     deferred.reject(err);
+                    toastr.error('Error: Could not retrieve books successfully', err);
                 });
             return deferred.promise;
         }
@@ -57,9 +60,11 @@
             $http.delete('/api/books/' + id)
                 .success(function(response) {
                     deferred.resolve();
+                    toastr.success('Book deleted successfully', 'Delete Book Success');
                 })
                 .error(function(err) {
                     deferred.reject(err);
+                    toastr.error('Error: Could not delete book', err);
                 });
             return deferred.promise;
         }

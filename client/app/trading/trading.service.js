@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .service('TradingService', TradingService);
 
-    TradingService.$inject = ['$http', '$q'];
+    TradingService.$inject = ['$http', '$q', 'toastr'];
 
     /* @ngInject */
-    function TradingService($http, $q) {
+    function TradingService($http, $q, toastr) {
         this.getBookRequests = getBookRequests;
         this.handleRequest = handleRequest;
 
@@ -51,9 +51,11 @@
             })
                 .success(function(bookRequest) {
                     deferred.resolve(bookRequest);
+                    toastr.success('Request processed successfully', 'Process Book Request');
                 })
                 .error(function(err) {
                     deferred.reject(err);
+                    toastr.error('ERROR: Could not process book request successfully', err);
                 });
             return deferred.promise;
         }
