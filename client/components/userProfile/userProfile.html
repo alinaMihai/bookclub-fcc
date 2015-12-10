@@ -3,21 +3,12 @@
 	<div class="row"><h1>User Profile</h1>
 	</div>
 	<div class="row">
-		<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
 		<p>Name: {{vm.user.firstName}} {{vm.user.lastName}}</p>
 		<p>Country/State: {{vm.user.state}}</p>
 		<p>City: {{vm.user.city}}</p>
 	</div>
-	<div class="row userBooks">
-		<h4>Shelf</h4>
-		<ul>
-			<li ng-repeat="book in vm.userBooks track by $index">
-				<div>
-					<a ui-sref="BookDetail({id:book._id})">
-						<img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}">
-					</a>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+	<show-book books="vm.userBooks"></show-book>
+
+	
 </div>

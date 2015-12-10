@@ -5,7 +5,7 @@
        <button class="btn btn-success" ng-if="vm.canMakeRequest" ng-click="vm.requestBook()" ng-disabled="vm.requestMade">{{vm.requestActionText}}</button>
 
 	</div>
-
+		<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
 	<div class="row">
 		<p>{{vm.book.title}}</p>
 		<p>{{vm.book.link}}</p>

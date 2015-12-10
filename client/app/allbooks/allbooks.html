@@ -3,11 +3,6 @@
 	<div class="row">
 		<h1>All books</h1>
 	</div>
-	<div class="row allBooks">
-		<ul>
-			<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-			<li ng-repeat="book in vm.allBooks track by $index">
-				<div><a ui-sref="BookDetail({id:book._id})"><img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}"></a></div></li>
-		</ul>
-	</div>
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+	<show-book books="vm.allBooks"></show-book>
 </div>

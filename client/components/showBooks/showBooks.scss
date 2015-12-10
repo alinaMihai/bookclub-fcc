@@ -1,0 +1,83 @@
+ show-book .books{
+    display:flex;
+ }
+
+show-book .books span{
+    left: 97px;
+    cursor: pointer;
+    background-color: white;
+    padding: 4px;
+    border-radius: 21px;
+    color: black;
+    font-size: 1.5em;
+    top: 168px;
+    z-index: 100;
+    position:absolute;
+}
+show-book .bookPreview{
+    position:relative;
+}
+show-book .books span:hover{
+    background-color:pink;
+}
+
+show-book .books ul li img:hover{
+  box-shadow: 6px 6px 5px #060606;
+}
+show-book .books ul li img{
+    height:200px;
+    width:130px;
+}
+
+show-book .books ul {
+    list-style: none;
+}
+
+show-book .books ul li  {
+    float:left;
+    padding: 5px;
+    width: 130px;
+    height: 200px;
+    margin: 10px;
+    margin-bottom:50px; 
+}
+
+show-book .shelf {
+    border-bottom: 30px solid #9D6437;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    top: -8px;
+    z-index: -10;
+    width: 1070px;
+    margin-top:10px;
+    position: relative;
+}
+/*Example adding pseudo element to give shelf depth*/
+show-book .shelf:after {
+    content: '';
+    background: #86480C;
+    height: 20px;
+    width: calc(100% + 40px); /*IE9+*/
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin: 0 -20px;
+}
+show-book .books ul li a{
+    position:relative;
+}
+ show-book .books ul li a:before { /* Just to give a little puddle of a shadow without adding another element */
+        content: '';
+    display: block;
+    width: 87%;
+    height: 1em;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 59%;
+    position: absolute;
+    top: 107px;
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    z-index: -5;
+} 

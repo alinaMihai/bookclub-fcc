@@ -74,7 +74,7 @@ exports.getUserProfile = function(req, res, next) {
     query.where('email', userEmail);
     query.exec(function(err, user) {
         if (err) return next(err);
-        if (!user) return res.status(401).send('Unauthorized');
+        if (!user) return res.status(404).send('Not found');
         res.json(user.profile);
     });
 };

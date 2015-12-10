@@ -23,13 +23,13 @@
             BookDetailService.getBook($stateParams.id).then(function(book) {
                 vm.book = book;
                 vm.canMakeRequest = currentUser.email !== vm.book.user;
-
+                usSpinnerService.stop('spinner-1');
                 BookDetailService.getExistingRequest(vm.book._id).then(function(requestMade) {
                     vm.requestMade = requestMade;
                     if (requestMade) {
                         vm.requestActionText = "Request made";
                     }
-                    usSpinnerService.stop('spinner-1');
+
                 });
             });
         }

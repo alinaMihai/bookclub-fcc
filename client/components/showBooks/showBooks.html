@@ -1,0 +1,17 @@
+<div class="row books">	
+		<ul>
+			<li ng-repeat="book in dirVm.books track by $index">
+				<div class="bookPreview">
+					<a ui-sref="BookDetail({id:book._id})">
+						<img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}">
+					</a>
+					<span ng-if="dirVm.showDeleteButton" class="glyphicon glyphicon-remove" aria-hidden="true"
+					       title="delete book" 
+					       ng-click="dirVm.deleteBook(book)"
+					       confirm-click>
+		            </span>
+				</div>
+				<div class="shelf visible-lg" ng-if="$index%7==0"></div>
+			</li>
+		</ul>
+	</div>

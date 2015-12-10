@@ -11,6 +11,7 @@
 				        ng-disabled="newBookForm.$invalid">Search</button>
 			</div>
 	</form>
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-search"></span>
 	<div class="results" ng-if="vm.results.length>0">
 		<h4>Results List</h4>
 		<ul>

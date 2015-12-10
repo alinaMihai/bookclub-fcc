@@ -57,10 +57,10 @@
 
 
 
-    AddBookController.$inject = ['$modalInstance', 'myBooksService'];
+    AddBookController.$inject = ['$modalInstance', 'myBooksService', 'usSpinnerService'];
 
     /* @ngInject */
-    function AddBookController($modalInstance, myBooksService) {
+    function AddBookController($modalInstance, myBooksService, usSpinnerService) {
         var vm = this;
         vm.queryBook = '';
         vm.searchBook = searchBook;
@@ -71,8 +71,10 @@
         vm.cancel = cancelHandler;
 
         function searchBook() {
+            usSpinnerService.spin('spinner-search');
             myBooksService.searchBook(vm.queryBook).then(function(books) {
                 vm.results = books;
+                usSpinnerService.stop('spinner-search');
             });
         }
 

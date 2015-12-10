@@ -2,13 +2,10 @@
     float: right;
     display: flex;
 }
- .myBooks{
- 	display:flex;
- }
-.results div, .myBooks div{
+.results div{
 	position:relative;
 }
-.results button, .myBooks span{
+.results button{
 	position: absolute;
     color: green;
     font-size: 2em;
@@ -19,13 +16,7 @@
     border-radius: 21px;
     top: 150px;
 }
-.myBooks span{
-    color:black;
-     font-size: 1.5em;
-}
-.myBooks span:hover{
-    background-color:pink;
-}
+
 .results button:hover{
     background-color: #E9FFE0;
 }
@@ -33,14 +24,15 @@
     color:gray;
     cursor:not-allowed;
 }
-.results ul, .myBooks ul {
+.results ul{
     list-style: none;
 }
 
-.results ul li, .myBooks ul li  {
+.results ul li{
     float:left;
     padding: 5px;
     width: 130px;
     height: 200px;
     margin: 10px;
+    margin-bottom:50px;
 }
