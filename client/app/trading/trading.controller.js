@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .controller('Trading', TradingController);
 
-    TradingController.$inject = ['TradingService'];
+    TradingController.$inject = ['TradingService', 'usSpinnerService'];
 
     /* @ngInject */
-    function TradingController(TradingService) {
+    function TradingController(TradingService, usSpinnerService) {
         var vm = this;
         vm.userBookRequests;
         vm.handleRequest = handleRequest;
@@ -20,6 +20,7 @@
         function activate() {
             TradingService.getBookRequests().then(function(userBookRequests) {
                 vm.userBookRequests = userBookRequests;
+                usSpinnerService.stop('spinner-1');
             });
         }
 

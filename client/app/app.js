@@ -6,7 +6,8 @@ var app = angular.module('bookclubApp', [
         'ngSanitize',
         'btford.socket-io',
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angularSpinner'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider

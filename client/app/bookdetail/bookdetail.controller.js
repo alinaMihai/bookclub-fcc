@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .controller('BookDetail', bookDetailController);
 
-    bookDetailController.$inject = ['BookDetailService', '$stateParams', 'Auth'];
+    bookDetailController.$inject = ['BookDetailService', '$stateParams', 'Auth', 'usSpinnerService'];
 
     /* @ngInject */
-    function bookDetailController(BookDetailService, $stateParams, Auth) {
+    function bookDetailController(BookDetailService, $stateParams, Auth, usSpinnerService) {
         var vm = this;
         var currentUser = Auth.getCurrentUser();
         vm.book = {};
@@ -29,6 +29,7 @@
                     if (requestMade) {
                         vm.requestActionText = "Request made";
                     }
+                    usSpinnerService.stop('spinner-1');
                 });
             });
         }

@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .controller('MyBooks', myBooksController);
 
-    myBooksController.$inject = ['myBooksService', '$modal'];
+    myBooksController.$inject = ['myBooksService', '$modal', 'usSpinnerService'];
 
     /* @ngInject */
-    function myBooksController(myBooksService, $modal) {
+    function myBooksController(myBooksService, $modal, usSpinnerService) {
         var vm = this;
         vm.myBooks = [];
         vm.deleteBook = deleteBook;
@@ -20,6 +20,7 @@
         function activate() {
             myBooksService.getMyBooks().then(function(books) {
                 vm.myBooks = books;
+                usSpinnerService.stop('spinner-1');
             });
         }
 

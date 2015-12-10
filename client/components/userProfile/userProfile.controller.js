@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .controller('UserProfile', userProfileController);
 
-    userProfileController.$inject = ['User', '$stateParams', 'UserProfileService'];
+    userProfileController.$inject = ['User', '$stateParams', 'UserProfileService', 'usSpinnerService'];
 
     /* @ngInject */
-    function userProfileController(User, $stateParams, UserProfileService) {
+    function userProfileController(User, $stateParams, UserProfileService, usSpinnerService) {
         var vm = this;
         vm.userBooks = [];
         var userResource = User.get();
@@ -21,6 +21,7 @@
                 'email': $stateParams.email
             }).then(function(user) {
                 vm.user = user;
+                usSpinnerService.stop('spinner-1');
             });
 
             UserProfileService.getUserBooks($stateParams.email).then(function(books) {

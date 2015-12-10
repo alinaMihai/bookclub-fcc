@@ -5,10 +5,10 @@
         .module('bookclubApp')
         .controller('AllBooks', AllBooksController);
 
-    AllBooksController.$inject = ['AllBooksService'];
+    AllBooksController.$inject = ['AllBooksService', 'usSpinnerService'];
 
     /* @ngInject */
-    function AllBooksController(AllBooksService) {
+    function AllBooksController(AllBooksService, usSpinnerService) {
         var vm = this;
         vm.allBooks = [];
 
@@ -19,6 +19,7 @@
         function activate() {
             AllBooksService.getAllBooks().then(function(books) {
                 vm.allBooks = books;
+                usSpinnerService.stop('spinner-1');
             });
         }
     }
