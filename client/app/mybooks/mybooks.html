@@ -2,27 +2,24 @@
 
 <div class="container">
 	<div class="row"><h1>My Books</h1></div>
-	<div class="row">
-		<form name="newBookForm">
-			<div class="form-group">
-				<label for="query">Add a book</label>
-				<input class="form-control" name="query" type="text" placeholder="Search book" ng-model="vm.queryBook" required>
-				<button class="btn btn-success btn-lg" ng-click="vm.searchBook()">Search</button>
-			</div>
-		</form>
-	</div>
-	<div class="results" ng-if="vm.results.length>0">
-		<h4>Results List</h4>
-		<ul>
-			<li ng-repeat="result in vm.results track by $index">
-				<div><span class="glyphicon glyphicon-plus" aria-hidden="true" title="add to shelf" ng-click="vm.addBook(result)"></span><img ng-src="{{result.thumbnail}}" alt="{{result.title}}" title="{{result.title}}"></div></li>
-		</ul>
-	</div>
+
+	<div class="row"><button class="btn btn-success" ng-click="vm.openAddBookModal('lg')">Add Book</button></div>
+	
 	<div class="row myBooks">
 		<h4>Shelf</h4>
 		<ul>
 			<li ng-repeat="book in vm.myBooks track by $index">
-				<div><span class="glyphicon glyphicon-remove" aria-hidden="true" title="delete book" ng-click="vm.deleteBook(book)"></span><a ui-sref="BookDetail({id:book._id})"><img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}"></a></div></li>
+				<div>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"
+					       title="delete book" 
+					       ng-click="vm.deleteBook(book)"
+					       confirm-click>
+					 </span>
+					<a ui-sref="BookDetail({id:book._id})">
+						<img ng-src="{{book.thumbnail}}" alt="{{book.title}}" title="{{book.title}}">
+					</a>
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>

@@ -1,0 +1,32 @@
+<div class="modal-header">
+	<h3 class="modal-title">Add Book</h3>
+</div>
+<div class="modal-body">
+	
+	<form name="newBookForm">
+			<div class="form-group" ng-class="{'has-error':newBookForm.query.$invalid && newBookForm.query.$dirty}">
+				<label for="query">Add a book</label>
+				<input class="form-control" name="query" type="text" placeholder="Search book" ng-model="vm.queryBook" required>
+				<button class="btn btn-success btn-lg" ng-click="vm.searchBook()" 
+				        ng-disabled="newBookForm.$invalid">Search</button>
+			</div>
+	</form>
+	<div class="results" ng-if="vm.results.length>0">
+		<h4>Results List</h4>
+		<ul>
+			<li ng-repeat="result in vm.results track by $index">
+				<div>
+					<button class="glyphicon glyphicon-plus" aria-hidden="true" title="add to shelf" 
+					ng-click="vm.addBook(result); vm[$index]=$index;"
+					ng-disabled="vm[$index]" ng-class="{'disabled': vm[$index]}" ></button>
+					<img ng-src="{{result.thumbnail}}" alt="{{result.title}}" title="{{result.title}}">
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="vm.ok()" >OK</button>
+	<button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+</div>

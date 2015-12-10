@@ -5,17 +5,14 @@
         .module('bookclubApp')
         .controller('MyBooks', myBooksController);
 
-    myBooksController.$inject = ['myBooksService'];
+    myBooksController.$inject = ['myBooksService', '$modal'];
 
     /* @ngInject */
-    function myBooksController(myBooksService) {
+    function myBooksController(myBooksService, $modal) {
         var vm = this;
-        vm.queryBook = '';
-        vm.searchBook = searchBook;
-        vm.results = [];
         vm.myBooks = [];
-        vm.addBook = addBook;
         vm.deleteBook = deleteBook;
+        vm.openAddBookModal = openAddBookModal;
         activate();
 
         ////////////////
@@ -26,16 +23,9 @@
             });
         }
 
-        function searchBook() {
-            myBooksService.searchBook(vm.queryBook).then(function(books) {
-                vm.results = books;
-            });
-        }
-
         function addBook(book) {
             myBooksService.addBook(book).then(function(book) {
                 vm.myBooks.push(book);
-                vm.results = [];
             });
         }
 
@@ -47,5 +37,58 @@
                 vm.myBooks.splice(index, 1);
             });
         }
+
+        function openAddBookModal(size) {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'app/mybooks/addBook.html',
+                size: size,
+                controller: 'AddBookCtrl as vm'
+            });
+
+            modalInstance.result.then(function(data) {
+                data.forEach(function(book) {
+                    addBook(book);
+                });
+            }, function() {
+                // $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
     }
+
+
+
+    AddBookController.$inject = ['$modalInstance', 'myBooksService'];
+
+    /* @ngInject */
+    function AddBookController($modalInstance, myBooksService) {
+        var vm = this;
+        vm.queryBook = '';
+        vm.searchBook = searchBook;
+        vm.results = [];
+        vm.myBooks = [];
+        vm.addBook = addBook;
+        vm.ok = okHandler;
+        vm.cancel = cancelHandler;
+
+        function searchBook() {
+            myBooksService.searchBook(vm.queryBook).then(function(books) {
+                vm.results = books;
+            });
+        }
+
+        function addBook(book) {
+            vm.myBooks.push(book);
+        }
+
+        function okHandler() {
+            $modalInstance.close(vm.myBooks);
+        }
+
+        function cancelHandler() {
+            vm.myBooks = [];
+            $modalInstance.dismiss('cancel');
+        }
+    }
+    angular.module('bookclubApp').controller('AddBookCtrl', AddBookController);
 })();

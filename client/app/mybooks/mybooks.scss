@@ -8,7 +8,7 @@
 .results div, .myBooks div{
 	position:relative;
 }
-.results span, .myBooks span{
+.results button, .myBooks span{
 	position: absolute;
     color: green;
     font-size: 2em;
@@ -26,10 +26,13 @@
 .myBooks span:hover{
     background-color:pink;
 }
-.results span:hover{
+.results button:hover{
     background-color: #E9FFE0;
 }
-
+.results button.disabled{
+    color:gray;
+    cursor:not-allowed;
+}
 .results ul, .myBooks ul {
     list-style: none;
 }
