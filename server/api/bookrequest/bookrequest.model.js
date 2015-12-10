@@ -11,7 +11,8 @@ var BookRequestSchema = new Schema({
         type: ObjectIdSchema,
         ref: 'Book'
     },
-    date: Date
+    date: Date,
+    status: Boolean
 });
 
 module.exports = mongoose.model('BookRequest', BookRequestSchema);

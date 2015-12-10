@@ -9,6 +9,7 @@ router.post('/', auth.isAuthenticated(), controller.create);
 router.get('/incoming', auth.isAuthenticated(), controller.getIncomingRequests);
 router.get('/outgoing', auth.isAuthenticated(), controller.getOutgoingRequests);
 router.get('/:bookId', auth.isAuthenticated(), controller.getExistingRequest);
+router.put('/:id', auth.isAuthenticated(), controller.handleRequest);
 /*router.get('/search/:query', controller.searchBook);
 router.get('/', auth.isAuthenticated(), controller.getMyBooks);
 router.get('/all', auth.isAuthenticated(), controller.index);

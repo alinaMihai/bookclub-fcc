@@ -1,17 +1,16 @@
 /**
  * Endpoints.
- * GET     /bookrequest/:id              ->  getExistingRequest
- * GET     /bookrequest                  ->  getBookRequests
- * POST    /bookrequest              	 ->  create
- * GET     /things/:id          ->  show
- * PUT     /things/:id          ->  update
+ * GET      /bookrequests/:id                        ->  getExistingRequest
+ * GET      /bookrequests/incoming                   ->  getIncomingRequests
+ * GET      /bookrequests/outgoing                   ->  getOutgoingRequests
+ * POST     /bookrequests              	             ->  create
+ * PUT      /bookrequests/:id                        ->  handleRequest
  * DELETE  /things/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var q = require('q');
 var BookRequest = require('./bookrequest.model');
 
 // Get my requests
@@ -44,19 +43,6 @@ exports.getExistingRequest = function(req, res) {
         return res.status(200).send(bookRequest);
     });
 }
-/*exports.getBookRequests = function(req, res) {
-    var user = req.user.email;
-    var userRequests = {};
-    var incomingPromise = getIncomingRequests(user);
-    var outgoingPromise = getOutgoingRequests(user);
-
-    q.all(incomingPromise, outgoingPromise).then(function(res) {
-        userRequests.incomingRequests = res[0];
-        userRequests.outgoingRequests = res[1];
-        return res.status(200).json(userRequests);
-    });
-}*/
-
 
 exports.getIncomingRequests = function(req, res) {
     var user = req.user.email;
@@ -85,6 +71,28 @@ exports.getOutgoingRequests = function(req, res) {
         }
         return res.status(200).send(bookRequests);
 
+    });
+
+}
+//approve or reject request
+exports.handleRequest = function(req, res) {
+    var query = BookRequest.findOne({});
+    query.where('_id', req.params.id);
+    query.populate('book');
+    query.exec(function(err, bookRequest) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!bookRequest) {
+            return res.status(404).send('Not Found');
+        }
+        var updated = _.merge(bookRequest, req.body);
+        updated.save(function(err) {
+            if (err) {
+                return handleError(res, err);
+            }
+            return res.status(200).json(bookRequest);
+        });
     });
 
 }

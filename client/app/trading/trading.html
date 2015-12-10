@@ -14,13 +14,23 @@
 						<th>From</th>
 						<th>Requested Book</th>
 						<th>On</th>
+						<th>Status</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.incomingRequests">
 						<td>{{request.user}}</td>
-						<td>{{request.book.title}}</td>
+						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+						<td>{{request.status|statusFilter}}</td>
+						<td class="actionOptions" ng-if="!request.status">
+							<div class="col-lg-2">			
+								<span class="glyphicon glyphicon-ok" aria-hidden="true" title="accept request" 
+								      ng-click="vm.handleRequest(request._id,true)"></span></div>
+							<div class="col-lg-2"><span class="glyphicon glyphicon-remove" aria-hidden="true" title="reject request"
+								ng-click="vm.handleRequest(request._id,false)"></span></div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -35,17 +45,60 @@
 						<th>Owner</th>
 						<th>Requested Book</th>
 						<th>On</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="request in vm.userBookRequests.outgoingRequests">
 						<td>{{request.book.user}}</td>
-						<td>{{request.book.title}}</td>
+						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+						<td>{{request.status|statusFilter}}</td>
 					</tr>
 				</tbody>
 			</table>
 		</tab>
-
+		<tab>
+			<tab-heading>My Requests</tab-heading>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Owner</th>
+						<th>Requested Book</th>
+						<th>On</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="request in vm.userBookRequests.myRequests">
+						<td>{{request.book.user}}</td>
+						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
+						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+						<td>{{request.status|statusFilter}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</tab>
+		<tab>
+			<tab-heading>Requests from others</tab-heading>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>From</th>
+						<th>Requested Book</th>
+						<th>On</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="request in vm.userBookRequests.othersRequests">
+						<td>{{request.user}}</td>
+						<td><a ui-sref="BookDetail({id:request.book._id})">{{request.book.title}}</a></td>
+						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
+						<td>{{request.status|statusFilter}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</tab>
 	</tabset>
 </div>
