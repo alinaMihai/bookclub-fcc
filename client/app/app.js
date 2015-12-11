@@ -4,7 +4,6 @@ var app = angular.module('bookclubApp', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'btford.socket-io',
         'ui.router',
         'ui.bootstrap',
         'angularSpinner'

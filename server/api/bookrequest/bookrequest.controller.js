@@ -54,7 +54,12 @@ exports.getIncomingRequests = function(req, res) {
             return handleError(res, err);
         }
         var incoming = bookRequests.filter(function(bookRequest) {
-            return bookRequest.book.user === user;
+            if(bookRequest.book){
+                return bookRequest.book.user === user;    
+            }else{
+                return 0;
+            }
+            
         });
         return res.status(200).send(incoming);
     });

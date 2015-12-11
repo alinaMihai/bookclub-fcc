@@ -12,6 +12,7 @@
 
 var _ = require('lodash');
 var Book = require('./books.model');
+var BookRequest = require('../bookrequest/bookrequest.model');
 
 var books = require('google-books-search');
 
@@ -28,7 +29,8 @@ exports.searchBook = function(req, res) {
         if (error) {
             return handleError(res, error);
         }
-        return res.status(200).send(results);
+        var books=changeThumbnailToSecure(results);
+        return res.status(200).send(books);
     });
 }
 
@@ -89,6 +91,11 @@ exports.destroy = function(req, res) {
         if (!book) {
             return res.status(404).send('Not Found');
         }
+        BookRequest.find({'book':book._id}).remove(function(err){
+            if(err){
+                handleError(res,err);
+            }
+        });
         book.remove(function(err) {
             if (err) {
                 return handleError(res, err);
@@ -112,4 +119,14 @@ exports.index = function(req, res) {
 function handleError(res, err) {
     console.log(err);
     return res.status(500).send(err);
+}
+
+function changeThumbnailToSecure(books){
+    return books.map(function(book){
+        if(book.thumbnail){
+               var thumbnail=book.thumbnail.replace('http','https');
+               book.thumbnail=thumbnail;
+        }
+        return book;
+    });
 }

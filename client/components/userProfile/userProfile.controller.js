@@ -29,6 +29,8 @@
             UserProfileService.getUserBooks($stateParams.email).then(function(books) {
                 vm.userBooks = books;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
 
         }

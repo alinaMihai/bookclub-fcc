@@ -21,6 +21,8 @@
             myBooksService.getMyBooks().then(function(books) {
                 vm.myBooks = books;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
 
@@ -76,6 +78,8 @@
             myBooksService.searchBook(vm.queryBook).then(function(books) {
                 vm.results = books;
                 vm.resultsIndex=[];
+                usSpinnerService.stop('spinner-search');
+            },function(err){
                 usSpinnerService.stop('spinner-search');
             });
         }

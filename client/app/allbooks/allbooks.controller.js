@@ -20,6 +20,8 @@
             AllBooksService.getAllBooks().then(function(books) {
                 vm.allBooks = books;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
     }

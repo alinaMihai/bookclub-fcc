@@ -21,6 +21,8 @@
             TradingService.getBookRequests().then(function(userBookRequests) {
                 vm.userBookRequests = userBookRequests;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
 

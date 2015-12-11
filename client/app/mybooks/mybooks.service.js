@@ -50,7 +50,7 @@
                 })
                 .error(function(err) {
                     deferred.reject(err);
-                    toastr.error('Error: Could not retrieve books successfully', err);
+                    toastr.error('Error: Could not retrieve books successfully');
                 });
             return deferred.promise;
         }

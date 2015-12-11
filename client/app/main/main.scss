@@ -1,11 +1,7 @@
-.thing-form {
-    margin: 20px 0;
-}
-
 #banner {
     border-bottom: none;
     margin-top: -20px;
-    height: 506px;
+    min-height: 332px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +25,6 @@
     background-image: url("../assets/images/bookclub.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: -200px;
 }
 
 .footer {
@@ -41,4 +36,8 @@
 
 .navbar-text {
   margin-left: 15px;
+}
+.features li{
+   padding:20px;
+   font-size:1.5em;
 }

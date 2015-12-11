@@ -28,13 +28,18 @@
                 vm.ownerText=vm.canMakeRequest?vm.book.user:'you';
                 vm.owner=vm.canMakeRequest?vm.book.user:currentUser.email;
                 usSpinnerService.stop('spinner-1');
-                BookDetailService.getExistingRequest(vm.book._id).then(function(requestMade) {
-                    vm.requestMade = requestMade;
-                    if (requestMade) {
-                        vm.requestActionText = "Request made";
-                    }
+                if(vm.canMakeRequest){
+                    BookDetailService.getExistingRequest(vm.book._id).then(function(requestMade) {
+                        vm.requestMade = requestMade;
+                        if (requestMade) {
+                            vm.requestActionText = "Request made";
+                        }
 
-                });
+                    });    
+                }
+                
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
 
