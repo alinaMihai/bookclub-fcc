@@ -67,6 +67,7 @@
         vm.results = [];
         vm.myBooks = [];
         vm.addBook = addBook;
+        vm.resultsIndex=[];
         vm.ok = okHandler;
         vm.cancel = cancelHandler;
 
@@ -74,12 +75,21 @@
             usSpinnerService.spin('spinner-search');
             myBooksService.searchBook(vm.queryBook).then(function(books) {
                 vm.results = books;
+                vm.resultsIndex=[];
                 usSpinnerService.stop('spinner-search');
             });
         }
 
-        function addBook(book) {
-            vm.myBooks.push(book);
+        function addBook(book,resultIndex) {
+            var bookIndex=_.findIndex(vm.myBooks,{'id':book.id});
+            if(bookIndex===-1){
+                vm.myBooks.push(book);
+                vm.resultsIndex[resultIndex]=1;    
+            }else{
+                vm.myBooks.splice(bookIndex,1);
+                vm.resultsIndex[resultIndex]=0;
+            }
+            
         }
 
         function okHandler() {

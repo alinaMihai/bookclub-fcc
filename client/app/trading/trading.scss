@@ -1,0 +1,36 @@
+.tradingTabs{
+   margin-top: 60px;
+}
+
+.tradingTabs ul.nav-tabs{
+	cursor:pointer;
+}
+.tradingTabs table{
+	margin-top:40px;
+}
+.badge-notify{
+   background:red;
+   position:relative;
+   top: -18px;
+   left: -8px;
+   font-size: .7em;
+  }
+
+  .icon-flag, .bookIcon{
+  	font-size: 1.7em;
+  }
+  .actionOptions{
+  	cursor:pointer;
+  }
+  .actionOptions span{
+  	font-size:1.5em;
+  }
+  .actionOptions span:hover{
+  	color:red;
+  }
+  .actionOptions div span.acceptRequest:hover{
+  	color:green;
+  }
+  .actionOptions div span.rejectRequest:hover{
+  	color:red;
+  }

@@ -11,6 +11,8 @@
     function bookDetailController(BookDetailService, $stateParams, Auth, usSpinnerService) {
         var vm = this;
         var currentUser = Auth.getCurrentUser();
+        vm.ownerText;
+        vm.owner;
         vm.book = {};
         vm.requestBook = requestBook;
         vm.canMakeRequest = false;
@@ -23,6 +25,8 @@
             BookDetailService.getBook($stateParams.id).then(function(book) {
                 vm.book = book;
                 vm.canMakeRequest = currentUser.email !== vm.book.user;
+                vm.ownerText=vm.canMakeRequest?vm.book.user:'you';
+                vm.owner=vm.canMakeRequest?vm.book.user:currentUser.email;
                 usSpinnerService.stop('spinner-1');
                 BookDetailService.getExistingRequest(vm.book._id).then(function(requestMade) {
                     vm.requestMade = requestMade;

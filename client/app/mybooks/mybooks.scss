@@ -1,6 +1,8 @@
+.modal-body.addBooks{
+    min-height: 200px;
+}
 .results {
     float: right;
-    display: flex;
 }
 .results div{
 	position:relative;
@@ -35,4 +37,10 @@
     height: 200px;
     margin: 10px;
     margin-bottom:50px;
+}
+.green{
+    color:green;
+}
+.red{
+    color:red !important;
 }

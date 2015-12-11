@@ -1,14 +1,53 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
-	<div class="row"><h1>Book Details</h1>
-       
-       <button class="btn btn-success" ng-if="vm.canMakeRequest" ng-click="vm.requestBook()" ng-disabled="vm.requestMade">{{vm.requestActionText}}</button>
-
+	<div class="row"><h1 class="text-center"><a ng-href="{{vm.book.link}}" target="_blank">{{vm.book.title}}</a><small> Book Details</small></h1>
 	</div>
-		<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+	<div class="row ownerMakeRequestRow">
+		<div class="col-lg-4">
+			<dl>
+				<dt>Owner</dt>
+				<dd><a ui-sref="UserProfile({email:vm.owner})">
+				{{vm.ownerText}}
+		     	</a></dd>
+			</dl>
+		</div>
+		<div class="col-lg-8">
+			<button class="btn btn-success" ng-if="vm.canMakeRequest" ng-click="vm.requestBook()" ng-disabled="vm.requestMade">{{vm.requestActionText}}
+			</button>
+		</div>
+	</div>
 	<div class="row">
-		<p>{{vm.book.title}}</p>
-		<p>{{vm.book.link}}</p>
-		<p>{{vm.book.pageCount}}</p>
+		<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+		
+		<div class="col-lg-4 bookImageDetails"><img ng-src="{{vm.book.thumbnail}}" alt="{{vm.book.title}}"></div>
+		<div class="col-lg-8">
+			<dl>
+				<dt>Title</dt>
+				<dd>{{vm.book.title}}</dd>
+				<dt>Authors</dt>
+				<dd><span ng-repeat="author in vm.book.authors"> {{author}} <br></span></dd>
+				<dt>Publisher</dt>
+				<dd>{{vm.book.publisher}}</dd>
+				<dt>Published Date</dt>
+				<dd>{{vm.book.publishedDate}}</dd>
+				<dt>No. of pages</dt>
+				<dd>{{vm.book.pageCount}}</dd>
+				<dt>Categories</dt>
+				<dd><span ng-repeat="category in vm.book.categories"> {{category}} <br></span></dd>
+				<dt>Language</dt>
+				<dd>{{vm.book.language}}</dd>
+				<dt>Link</dt>
+				<dd><a ng-href="{{vm.book.link}}">{{vm.book.link}}</a></dd>
+			</dl>
+		</div>
 	</div>
 </div>
+
+</div>
+<footer class="footer">
+  <div class="container">
+      <p>Bookclub App 2015 | Power by Google Books API and Angular Fullstack v2.1.1 |
+        <a href="https://twitter.com/AlinaMihai90">@AlinaMihai90</a> |
+         <a href="https://github.com/alinaMihai">Github</a></p>
+  </div>
+</footer>

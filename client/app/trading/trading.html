@@ -1,14 +1,20 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-	<div class="row"><h1>Trading</h1></div>
+	<div class="row"><h1 class="text-center">Trading</h1></div>
 	 <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-	<tabset>
-		<tab >
+	
+	 <div class="row tradingTabs">
+		<tabset>
+		<tab>
 		    <tab-heading>
-			<i class="badge">{{vm.userBookRequests.incomingRequests.length}}</i> Incoming Requests
+		    <span class="glyphicon glyphicon-flag icon-flag"></span>
+		    <span ng-if="vm.userBookRequests.incomingRequests.length" 
+		          class="badge badge-notify">
+		          {{vm.userBookRequests.incomingRequests.length}}
+		     </span> Incoming Requests
 			</tab-heading>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>From</th>
@@ -25,21 +31,25 @@
 						<td>{{request.date |date:'dd-M-yyyy a H:mm'}}</td>
 						<td>{{request.status|statusFilter}}</td>
 						<td class="actionOptions" ng-if="!request.status">
-							<div class="col-lg-2">			
-								<span class="glyphicon glyphicon-ok" aria-hidden="true" title="accept request" 
+							<div class="col-lg-4">			
+								<span class="glyphicon glyphicon-ok acceptRequest" aria-hidden="true" title="accept request" 
 								      ng-click="vm.handleRequest(request._id,true)"></span></div>
-							<div class="col-lg-2"><span class="glyphicon glyphicon-remove" aria-hidden="true" title="reject request"
+							<div class="col-lg-4"><span class="glyphicon glyphicon-remove rejectRequest" aria-hidden="true" title="reject request"
 								ng-click="vm.handleRequest(request._id,false)"></span></div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</tab>
-		<tab >
+		<tab>
 		    <tab-heading>
-			<i class="badge">{{vm.userBookRequests.outgoingRequests.length}}</i> Outgoing Requests
+		        <span class="glyphicon glyphicon-flag icon-flag"></span>
+		         <span ng-if="vm.userBookRequests.outgoingRequests.length" 
+		         class="badge badge-notify">
+		            {{vm.userBookRequests.outgoingRequests.length}}
+		         </span> Outgoing Requests
 			</tab-heading>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Owner</th>
@@ -59,8 +69,8 @@
 			</table>
 		</tab>
 		<tab>
-			<tab-heading>My Requests</tab-heading>
-			<table class="table">
+			<tab-heading><span class="glyphicon glyphicon-book bookIcon"> </span> My Requests </tab-heading>
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Owner</th>
@@ -80,8 +90,8 @@
 			</table>
 		</tab>
 		<tab>
-			<tab-heading>Requests from others</tab-heading>
-			<table class="table">
+			<tab-heading><span class="glyphicon glyphicon-book bookIcon"></span> Requests from others</tab-heading>
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>From</th>
@@ -100,5 +110,14 @@
 				</tbody>
 			</table>
 		</tab>
-	</tabset>
+	    </tabset> 	
+	 </div>
+	
 </div>
+<footer class="footer">
+  <div class="container">
+      <p>Bookclub App 2015 | Power by Google Books API and Angular Fullstack v2.1.1 |
+        <a href="https://twitter.com/AlinaMihai90">@AlinaMihai90</a> |
+         <a href="https://github.com/alinaMihai">Github</a></p>
+  </div>
+</footer>

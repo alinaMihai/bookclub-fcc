@@ -1,14 +1,26 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
-	<div class="row"><h1>User Profile</h1>
+	<div class="row text-center"><h1>User Profile</h1>
 	</div>
 	<div class="row">
-		<p>Name: {{vm.user.firstName}} {{vm.user.lastName}}</p>
-		<p>Country/State: {{vm.user.state}}</p>
-		<p>City: {{vm.user.city}}</p>
+		<dl class="dl-horizontal userInfo">
+			<dt>Name</dt>
+			<dd><p>{{vm.user.firstName}} {{vm.user.lastName}}</p></dd>
+			<dt>State/Country</dt>
+			<dd><p>{{vm.user.state}}</p></dd>
+			<dt>City</dt>
+			<dd><p>{{vm.user.city}}</p></dd>
+		</dl>
 	</div>
 	<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+	<h3 class="userBooksHeading">{{vm.user.firstName}}'s Books</h3>
+	<hr>
 	<show-book books="vm.userBooks"></show-book>
-
-	
 </div>
+<footer class="footer">
+  <div class="container">
+      <p>Bookclub App 2015 | Power by Google Books API and Angular Fullstack v2.1.1 |
+        <a href="https://twitter.com/AlinaMihai90">@AlinaMihai90</a> |
+         <a href="https://github.com/alinaMihai">Github</a></p>
+  </div>
+</footer>

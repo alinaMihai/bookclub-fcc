@@ -69,7 +69,7 @@ show-book .books ul li a{
     position:relative;
 }
  show-book .books ul li a:before { /* Just to give a little puddle of a shadow without adding another element */
-        content: '';
+    content: '';
     display: block;
     width: 87%;
     height: 1em;

@@ -5,6 +5,13 @@
 #banner {
     border-bottom: none;
     margin-top: -20px;
+    height: 506px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#banner .container-fluid{
+    background-color: rgba(0, 0, 0, 0.39);
 }
 
 #banner h1 {
@@ -16,10 +23,13 @@
 .hero-unit {
     position: relative;
     padding: 30px 15px;
-    color: #F5F5F5;
+    color: #FFFFFF;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+    background-image: url("../assets/images/bookclub.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -200px;
 }
 
 .footer {
