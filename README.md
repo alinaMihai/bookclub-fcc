@@ -6,10 +6,10 @@ The application allowes you to add books, using the Google Books API, delete boo
 - website: https://bookclub-fcc.herokuapp.com/
 
 Implemented user stories: 
-1. As an authenticated user, I can view all books posted by every user.
-2. As an authenticated user, I can add a new book.
-3. As an authenticated user, I can update my settings to store my full name, city, and state.
-4. As an authenticated user, I can propose a trade and wait for the other user to accept the trade.
+- As an authenticated user, I can view all books posted by every user.
+- As an authenticated user, I can add a new book.
+- As an authenticated user, I can update my settings to store my full name, city, and state.
+- As an authenticated user, I can propose a trade and wait for the other user to accept the trade.
 
 Tools used:
 - Angular Fullstack Generator
